@@ -1,5 +1,4 @@
-// https://farhiam.github.io/rockpaperscissors/
-
 module.exports = {
-  publicPath: '/rockpaperscissors/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/rockpaperscissors//' : '/',
 };

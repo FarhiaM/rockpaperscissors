@@ -12,20 +12,17 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+button{
+  background: #78E6FC;
+  padding: 10px 20px;
+  border: 1px solid #78E6FC;
+  font-size:1.5em;
+  border-radius: 4px;
+  outline:none;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+button:hover, button:focus{
+  transform: translateY(-3px);
 }
 </style>

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     userChoice: '',
     isUserWinner: false,
     showResult: false,
+    error: '',
   },
   getters: {
     choices: state => state.choices,
@@ -18,20 +19,27 @@ export default new Vuex.Store({
   },
   mutations: {
     setUserChoice(state, userChoice) {
-      // console.log('Before mutation happens:', state.userChoice);
       state.userChoice = userChoice;
-      // console.log('Before mutation happens:', state.userChoice);
     },
     setComputerChoice(state, computerChoice) {
       state.computerChoice = computerChoice;
     },
     setIsUserWinner(state, choices) {
       let isUserWinner;
-      if (choices.userChoice === 'rock' && choices.computerChoice === 'scissor') {
+      if (
+        choices.userChoice === 'rock'
+                && choices.computerChoice === 'scissor'
+      ) {
         isUserWinner = true;
-      } else if (choices.userChoice === 'paper' && choices.computerChoice === 'rock') {
+      } else if (
+        choices.userChoice === 'paper'
+                && choices.computerChoice === 'rock'
+      ) {
         isUserWinner = true;
-      } else if (choices.userChoice === 'scissors' && choices.computerChoice === 'paper') {
+      } else if (
+        choices.userChoice === 'scissors'
+                && choices.computerChoice === 'paper'
+      ) {
         isUserWinner = true;
       } else if (choices.userChoice === choices.computerChoice) {
         isUserWinner = false;
@@ -41,23 +49,29 @@ export default new Vuex.Store({
       state.isUserWinner = isUserWinner;
     },
     setResult(state, bool) {
-      console.log('Before mutation happens:', state.showResult);
-      state.showResult = bool; // ! is invertig value
-      console.log('Before mutation happens:', state.showResult);
+      state.showResult = bool;
+    },
+    POST_ERROR: (state, payload) => {
+      state.error = payload;
     },
   },
   actions: {
     playGame({ commit, state }, userSelection) {
-      commit('setResult', false);
-      const computerChoice = state.choices[Math.floor(Math.random() * state.choices.length)];
-      const userChoice = userSelection;
+      if (userSelection !== 'empty') {
+        commit('POST_ERROR', null);
+        commit('setResult', false);
+        const computerChoice = state.choices[Math.floor(Math.random() * state.choices.length)];
+        const userChoice = userSelection;
 
-      console.log(userChoice, computerChoice, state.isUserWinner);
+        console.log(userChoice, computerChoice, state.isUserWinner);
 
-      commit('setUserChoice', userChoice);
-      commit('setComputerChoice', computerChoice);
-      commit('setIsUserWinner', { computerChoice, userChoice });
-      commit('setResult', true);
+        commit('setUserChoice', userChoice);
+        commit('setComputerChoice', computerChoice);
+        commit('setIsUserWinner', { computerChoice, userChoice });
+        commit('setResult', true);
+      } else {
+        commit('POST_ERROR', 'Woah there friend 🖐🏾 Maybe you clicked a little too fast! Choose one of the options and try again!');
+      }
     },
   },
   modules: {},
