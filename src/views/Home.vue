@@ -73,9 +73,7 @@ export default {
   top: 50%;
   left: 50%;
   width: 100wv;
-  height: 100vh;
   transform: translate(-50%, -50%);
-  //border: 1px solid red;
 
   img{
     width: 400px;

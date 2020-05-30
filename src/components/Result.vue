@@ -1,17 +1,27 @@
 <template>
   <div class="results">
-    <p
-      v-if="result"
-      class="winner"
-    >
-      You won!
-    </p>
-    <p
-      v-else
-      class="looser"
-    >
-      You Lost!
-    </p>
+    <div v-if="result" class="winner">
+      <p>
+        You won! 🎉
+      </p>
+      <iframe
+        src="https://giphy.com/embed/Qadbv0ccmSrJL9Vlwj"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      ></iframe>
+    </div>
+    <div v-else class="looser">
+      <p>
+        You Lost! 😔
+      </p>
+      <iframe
+        src="https://giphy.com/embed/dXXPEOlvsiOFozOlLu"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      ></iframe>
+    </div>
   </div>
 </template>
 
@@ -28,5 +38,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+p {
+  font-size: 1em;
+}
+iframe {
+  margin-bottom: 100px;
+}
 </style>
