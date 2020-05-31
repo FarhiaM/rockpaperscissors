@@ -1,2 +1,3 @@
-# rock-papper-scissors-game
-little game project from vuevixens course
+# Rock, papper or sicissors
+
+A simple game built using vue.js and vuex
